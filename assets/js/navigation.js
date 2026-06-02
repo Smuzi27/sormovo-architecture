@@ -79,8 +79,8 @@ const Navigation = {
 
   showMapSelector(point) {
     const savedApp = localStorage.getItem('selected_map_app');
-    if (savedApp && document.getElementById('remember-map-app')?.checked) {
-      this.openMapApp(savedApp, true);
+    if (savedApp) {
+      this.openMapApp(savedApp, false);
       return;
     }
 
@@ -115,7 +115,24 @@ const Navigation = {
       .replace('{lng}', lng);
 
     this.hideMapSelector();
-    window.location.href = url;
+
+    if (window.Telegram?.WebApp) {
+      Telegram.WebApp.openLink(url, { try_instant_view: true });
+    } else {
+      window.location.href = url;
+    }
+  },
+
+  showOnTelegramMap(point) {
+    if (!point) return;
+
+    const { lat, lng } = point.coordinates;
+
+    if (window.Telegram?.WebApp) {
+      Telegram.WebApp.openLocation(lat, lng, point.name);
+    } else {
+      window.location.href = `https://yandex.ru/maps/?pt=${lng},${lat}&z=16`;
+    }
   },
 
   showNotification(message) {

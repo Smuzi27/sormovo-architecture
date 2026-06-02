@@ -101,6 +101,10 @@ const App = {
     document.getElementById('theme-toggle')?.addEventListener('click', () => {
       this.toggleTheme();
     });
+
+    document.getElementById('telegram-map-btn')?.addEventListener('click', () => {
+      Navigation.showOnTelegramMap(Route.currentPoint);
+    });
   },
 
   showScreen(screenId) {
