@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#FAFAFA">
+  <meta name="telegram-web-app-bot-init-data" content="">
+  <title>Архитектурный маршрут «Советское Сормово»</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1 class="app-title">
+        <i data-lucide="landmark"></i>
+        Советское Сормово
+      </h1>
+      <div class="header-stats">
+        <span class="stat-item" id="points-display"><i data-lucide="star"></i> 0 баллов</span>
+        <span class="stat-item" id="progress-display"><i data-lucide="map-pin"></i> 0/10</span>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Сменить тему">
+          <i data-lucide="sun" class="theme-icon-light"></i>
+          <i data-lucide="moon" class="theme-icon-dark"></i>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section id="list-section" class="screen active">
+        <div class="categories-container" id="categories-container">
+        </div>
+      </section>
+
+      <section id="point-detail" class="screen">
+        <button class="btn-back" id="back-btn">
+          <i data-lucide="arrow-left"></i> Назад
+        </button>
+        <div class="point-info">
+          <img id="point-image" class="point-image" src="" alt="">
+          <h2 id="point-name" class="point-title"></h2>
+          <div class="point-meta">
+            <span id="point-address" class="point-address">
+              <i data-lucide="map-pin"></i>
+            </span>
+            <span id="point-year" class="point-year"></span>
+          </div>
+          <div class="point-tags">
+            <span id="point-era" class="chip chip-era"></span>
+            <span id="point-style" class="chip chip-style"></span>
+          </div>
+          <p id="point-architect" class="point-architect"></p>
+          <p id="point-description" class="point-description"></p>
+          <div class="point-actions">
+            <button class="btn btn-outlined" id="nav-btn">
+              <i data-lucide="navigation"></i> Проложить маршрут
+            </button>
+            <button class="btn btn-tonal" id="quiz-btn">
+              <i data-lucide="brain"></i> Пройти квиз <span class="points-badge">+10</span>
+            </button>
+            <button class="btn btn-filled success" id="checkin-btn">
+              <i data-lucide="map-pin"></i> Я на месте
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz-section" class="screen">
+        <button class="btn-back" id="quiz-back-btn">
+          <i data-lucide="arrow-left"></i> Назад
+        </button>
+        <div class="quiz-container">
+          <div class="quiz-header">
+            <h2 class="quiz-title">Квиз</h2>
+            <span id="quiz-points" class="quiz-points">
+              <i data-lucide="star"></i> +10 баллов
+            </span>
+          </div>
+          <p id="quiz-question" class="quiz-question"></p>
+          <div id="quiz-options" class="quiz-options"></div>
+          <div id="quiz-result" class="quiz-result hidden">
+            <p id="quiz-result-text"></p>
+            <button class="btn btn-filled" id="quiz-continue-btn">Продолжить</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile-section" class="screen">
+        <button class="btn-back" id="profile-back-btn">
+          <i data-lucide="arrow-left"></i> Назад
+        </button>
+        <div class="profile-container">
+          <div class="profile-header">
+            <div class="profile-avatar" id="user-avatar">
+              <i data-lucide="user-circle"></i>
+            </div>
+            <h2 class="profile-name" id="user-name">Путешественник</h2>
+          </div>
+          <div class="profile-stats">
+            <div class="stat-card">
+              <i data-lucide="star"></i>
+              <span class="stat-value" id="total-points">0</span>
+              <span class="stat-label">Баллов</span>
+            </div>
+            <div class="stat-card">
+              <i data-lucide="map-pin"></i>
+              <span class="stat-value" id="visited-points">0</span>
+              <span class="stat-label">Точек</span>
+            </div>
+            <div class="stat-card">
+              <i data-lucide="brain"></i>
+              <span class="stat-value" id="quiz-correct">0</span>
+              <span class="stat-label">Квизов</span>
+            </div>
+          </div>
+          <div class="achievements">
+            <h3 class="achievements-title">Достижения</h3>
+            <div id="achievements-list" class="achievements-list"></div>
+          </div>
+          <div class="profile-actions">
+            <button class="btn btn-outlined" id="share-btn">
+              <i data-lucide="share-2"></i> Поделиться
+            </button>
+            <button class="btn btn-outlined" id="reset-btn">
+              <i data-lucide="rotate-ccw"></i> Сбросить прогресс
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="completion-section" class="screen">
+        <div class="completion-container">
+          <div class="completion-badge">
+            <i data-lucide="trophy"></i>
+          </div>
+          <h2 class="completion-title">Поздравляем!</h2>
+          <p class="completion-text">Вы прошли весь архитектурный маршрут «Советское Сормово»!</p>
+          <div class="completion-stats">
+            <div class="completion-stat">
+              <span class="stat-value" id="final-points">0</span>
+              <span class="stat-label">Итого баллов</span>
+            </div>
+          </div>
+          <div class="certificate" id="certificate">
+            <p class="certificate-text">СЕРТИФИКАТ</p>
+            <p class="certificate-subtext">участника архитектурного маршрута</p>
+            <p class="certificate-name" id="certificate-name">«Советское Сормово»</p>
+          </div>
+          <button class="btn btn-filled" id="completion-share-btn">
+            <i data-lucide="share-2"></i> Поделиться
+          </button>
+          <button class="btn btn-outlined" id="completion-back-btn">
+            <i data-lucide="arrow-left"></i> Вернуться к списку
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <button class="fab" id="fab-nav">
+      <i data-lucide="navigation"></i>
+      <span>Навигация</span>
+    </button>
+
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-screen="list-section">
+        <i data-lucide="map-pin-house"></i>
+        <span class="nav-label">Места</span>
+      </button>
+      <button class="nav-btn" data-screen="profile-section">
+        <i data-lucide="user-circle"></i>
+        <span class="nav-label">Профиль</span>
+      </button>
+    </nav>
+
+    <div class="offline-indicator hidden" id="offline-indicator">
+      <i data-lucide="wifi-off"></i>
+      <span>Офлайн режим</span>
+    </div>
+
+    <div class="map-selector-modal" id="map-selector">
+      <div class="map-selector-content">
+        <h3 class="map-selector-title">Выберите приложение</h3>
+        <div class="map-apps-list">
+          <button class="map-app-btn" data-app="yandex">
+            <i data-lucide="map"></i>
+            <span>Яндекс Карты</span>
+          </button>
+          <button class="map-app-btn" data-app="google">
+            <i data-lucide="globe"></i>
+            <span>Google Maps</span>
+          </button>
+          <button class="map-app-btn" data-app="2gis">
+            <i data-lucide="navigation-2"></i>
+            <span>2ГИС</span>
+          </button>
+        </div>
+        <label class="remember-choice">
+          <input type="checkbox" id="remember-map-app">
+          <span>Запомнить выбор</span>
+        </label>
+        <button class="btn btn-text" id="map-selector-cancel">Отмена</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="assets/js/route.js"></script>
+  <script src="assets/js/gamification.js"></script>
+  <script src="assets/js/quiz.js"></script>
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/offline.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

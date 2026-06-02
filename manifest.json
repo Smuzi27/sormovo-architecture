@@ -1,0 +1,22 @@
+{
+  "name": "Архитектурный маршрут «Советское Сормово»",
+  "short_name": "Советское Сормово",
+  "description": "Интерактивный гид по архитектуре советского Сормова в Нижнем Новгороде",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#16213e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/images/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "assets/images/icons/icon-192.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
