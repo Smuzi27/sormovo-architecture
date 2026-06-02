@@ -9,7 +9,7 @@ const MAP_APPS = {
   },
   '2gis': {
     name: '2ГИС',
-    urlTemplate: 'https://2gis.ru/nizhny_novgorod/firm/70000001029254890/center/{lng},{lat},16'
+    urlTemplate: 'https://2gis.ru/geo/{lng},{lat}'
   }
 };
 
@@ -128,8 +128,12 @@ const Navigation = {
 
     const { lat, lng } = point.coordinates;
 
-    if (window.Telegram?.WebApp) {
-      Telegram.WebApp.openLocation(lat, lng, point.name);
+    if (window.Telegram?.WebApp?.openLocation) {
+      try {
+        Telegram.WebApp.openLocation(lat, lng, point.name);
+      } catch (e) {
+        window.location.href = `https://yandex.ru/maps/?pt=${lng},${lat}&z=16`;
+      }
     } else {
       window.location.href = `https://yandex.ru/maps/?pt=${lng},${lat}&z=16`;
     }

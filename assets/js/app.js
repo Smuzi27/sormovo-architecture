@@ -103,7 +103,11 @@ const App = {
     });
 
     document.getElementById('telegram-map-btn')?.addEventListener('click', () => {
-      Navigation.showOnTelegramMap(Route.currentPoint);
+      if (Route.currentPoint) {
+        Navigation.showOnTelegramMap(Route.currentPoint);
+      } else {
+        App.showNotification('Сначала выберите точку');
+      }
     });
   },
 
