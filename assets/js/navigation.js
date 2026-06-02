@@ -128,6 +128,15 @@ const Navigation = {
 
     const { lat, lng } = point.coordinates;
 
+    if (window.Telegram?.WebApp?.BackButton) {
+      const tg = Telegram.WebApp;
+      tg.BackButton.show();
+      tg.BackButton.onClick(() => {
+        tg.BackButton.hide();
+        tg.close();
+      });
+    }
+
     if (window.Telegram?.WebApp?.openLocation) {
       try {
         Telegram.WebApp.openLocation(lat, lng, point.name);
