@@ -123,31 +123,6 @@ const Navigation = {
     }
   },
 
-  showOnTelegramMap(point) {
-    if (!point) return;
-
-    const { lat, lng } = point.coordinates;
-
-    if (window.Telegram?.WebApp?.BackButton) {
-      const tg = Telegram.WebApp;
-      tg.BackButton.show();
-      tg.BackButton.onClick(() => {
-        tg.BackButton.hide();
-        tg.close();
-      });
-    }
-
-    if (window.Telegram?.WebApp?.openLocation) {
-      try {
-        Telegram.WebApp.openLocation(lat, lng, point.name);
-      } catch (e) {
-        window.location.href = `https://yandex.ru/maps/?pt=${lng},${lat}&z=16`;
-      }
-    } else {
-      window.location.href = `https://yandex.ru/maps/?pt=${lng},${lat}&z=16`;
-    }
-  },
-
   showNotification(message) {
     const notification = document.createElement('div');
     notification.style.cssText = `

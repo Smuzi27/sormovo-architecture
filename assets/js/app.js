@@ -101,14 +101,6 @@ const App = {
     document.getElementById('theme-toggle')?.addEventListener('click', () => {
       this.toggleTheme();
     });
-
-    document.getElementById('telegram-map-btn')?.addEventListener('click', () => {
-      if (Route.currentPoint) {
-        Navigation.showOnTelegramMap(Route.currentPoint);
-      } else {
-        App.showNotification('Сначала выберите точку');
-      }
-    });
   },
 
   showScreen(screenId) {
